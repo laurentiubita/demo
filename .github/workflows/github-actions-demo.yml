@@ -11,7 +11,7 @@ jobs:
       - name: Install java
         run: |
           sudo apt update
-          sudo apt install openjdk-11-jre-headless
+          sudo apt install openjdk-17-jdk openjdk-17-jre
           java -version
           echo $JAVA_HOME
       - name: Check out repository code
