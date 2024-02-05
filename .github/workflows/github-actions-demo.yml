@@ -15,6 +15,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Maven build
+        run: |
+          cd ${{ github.workspace }}
+          mvn clean package
       - name: Docker metadata
         id: metadata
         uses: docker/metadata-action@v3
