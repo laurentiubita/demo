@@ -38,3 +38,20 @@ spec:
             limits:
               cpu: "1000m"
               memory: "500Mi"
+
+          volumeMounts:
+            - name: config #3
+              mountPath: "/application.properties"
+              subPath: "application.properties"
+              readOnly: true # true/false
+      volumes:
+        # You set volumes at the Pod level,
+        # then mount them into containers inside that Pod
+        - name: config  #3
+          configMap:
+            # Provide the name of the ConfigMap you want to mount.
+            name: app-config #1
+            # An array of keys from the ConfigMap to create as files
+            items:
+              - key: "application.properties"
+                path: "application.properties"
