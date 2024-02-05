@@ -39,7 +39,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v3
         with:
-          images: ${{ vars.docker_repo }}/demo-micronaut
+          images: ${{ vars.DOCKER_REPO }}/demo-micronaut
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
