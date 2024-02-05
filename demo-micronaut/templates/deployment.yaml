@@ -50,7 +50,7 @@ spec:
         - name: config  #3
           configMap:
             # Provide the name of the ConfigMap you want to mount.
-            name: app-config #1
+            name: {{ .Chart.Name }}-config #1
             # An array of keys from the ConfigMap to create as files
             items:
               - key: "application.properties"
