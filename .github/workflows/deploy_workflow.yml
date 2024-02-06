@@ -1,5 +1,5 @@
-name: Deploy
-run-name: ${{ github.actor }} is deploying 🚀
+name: Deploy demo micronaut
+run-name: ${{ github.actor }} is deploying demo micronaut🚀
 on:
   workflow_dispatch:
 jobs:
