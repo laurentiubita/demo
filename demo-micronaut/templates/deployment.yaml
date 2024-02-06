@@ -41,7 +41,7 @@ spec:
 
           volumeMounts:
             - name: config #3
-              mountPath: "/application.properties"
+              mountPath: "/config/application.properties"
               subPath: "application.properties"
               readOnly: true # true/false
       volumes:

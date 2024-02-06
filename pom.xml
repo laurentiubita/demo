@@ -21,6 +21,7 @@
     <micronaut.aot.packageName>com.example.aot.generated</micronaut.aot.packageName>
     <micronaut.runtime>netty</micronaut.runtime>
     <exec.mainClass>com.example.Application</exec.mainClass>
+
   </properties>
 
   <repositories>
@@ -73,7 +74,28 @@
     </dependency>
 
   </dependencies>
+<profiles>
+  <profile>
+    <id>kube</id>
+    <build>
+
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    </build>
+
+  </profile>
+</profiles>
   <build>
+
     <plugins>
       <plugin>
         <groupId>io.micronaut.maven</groupId>
