@@ -12,6 +12,7 @@ jobs:
         with:
           exec: |
             cd '${{ github.workspace }}'
+            ls
             helm lint demo-micronaut
           kubeconfig: '${{ secrets.KUBE_CONFIG }}'
           overrule_existing_kubeconfig: "true"
