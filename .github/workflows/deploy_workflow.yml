@@ -24,6 +24,6 @@ jobs:
             ls
             helm lint demo-micronaut
             helm template demo-micronaut
-            helm upgrade demo-micronaut demo-micronaut/ --values demo-micronaut/values.yaml
+            helm upgrade demo-micronaut demo-micronaut/ --values demo-micronaut/values.yaml --install 
           kubeconfig: '${{ secrets.KUBE_CONFIG }}'
           overrule_existing_kubeconfig: "true"
