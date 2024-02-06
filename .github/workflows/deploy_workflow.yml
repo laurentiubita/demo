@@ -1,0 +1,17 @@
+name: Deploy
+run-name: ${{ github.actor }} is deploying 🚀
+on:
+  workflow_dispatch:
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v3
+        with:
+          exec: |
+            cd '${{ github.workspace }}'
+            helm lint demo-micronaut
+          kubeconfig: '${{ secrets.KUBE_CONFIG }}'
+          overrule_existing_kubeconfig: "true"
