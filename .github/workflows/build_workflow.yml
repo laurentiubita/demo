@@ -1,7 +1,7 @@
 name: Build demo micronaut
 run-name: ${{ github.actor }} is building demo micronaut 🚀
 on:
-  workflow_dispatch
+  workflow_dispatch:
 #  push:
 #    branches:
 #      - 'master'
