@@ -8,5 +8,5 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 data:
   application.properties: | 
-    friendly.message= my friend configmap!!
+    friendly.message= my friend configMAP!!
     database.url=DBCONFIGMAP
