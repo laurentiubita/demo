@@ -3,7 +3,6 @@ run-name: ${{ github.actor }} is deploying demo micronaut🚀
 on:
   workflow_dispatch:
 env:
-  EKS_CLUSTER_NAME: eksdemo1 
   AWS_REGION: us-east-1
 jobs:
   deployment:
