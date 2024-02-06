@@ -1,0 +1,58 @@
+name: Build demo micronaut
+run-name: ${{ github.actor }} is building demo micronaut 🚀
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - run: echo " The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo " This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo " The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo " The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo " The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17 for x64
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          architecture: x64
+      - name: Build with Maven
+        run: |
+          cd ${{ github.workspace }}
+          mvn -B package --file pom.xml -Pkube
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ vars.DOCKER_REPO }}/demo-micronaut
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value={{sha}}
+            type=raw,value=latest
+      - run: echo ${{ secrets.DOCKER_USERNAME }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
+      - run: echo " This job's status is ${{ job.status }}."
