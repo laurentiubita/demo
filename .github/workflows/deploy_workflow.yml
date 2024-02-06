@@ -1,5 +1,5 @@
-name: Deploy
-run-name: ${{ github.actor }} is deploying 🚀
+name: Deploy demo micronaut
+run-name: ${{ github.actor }} is deploying demo micronaut🚀
 on:
   workflow_dispatch:
 jobs:
@@ -12,6 +12,9 @@ jobs:
         with:
           exec: |
             cd '${{ github.workspace }}'
+            ls
             helm lint demo-micronaut
+            helm template demo-micronaut
+            helm upgrade demo-micronaut demo-micronaut/ --values demo-micronaut/values.yaml
           kubeconfig: '${{ secrets.KUBE_CONFIG }}'
           overrule_existing_kubeconfig: "true"

@@ -1,7 +1,11 @@
 name: Build demo micronaut
 run-name: ${{ github.actor }} is building demo micronaut 🚀
 on:
-  workflow_dispatch 
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
