@@ -10,5 +10,5 @@ data:
   application.properties: | 
     friendly.message= my friend configMAP!!
     database.url=DBCONFIGMAP
-    micronaut.http.services.micronaut-b.url=http://micronaut-b-srv.default.svc.cluster.local
+    micronaut.http.services.micronaut-b.url=http://demo-micronaut-b-srv.default.svc.cluster.local
 
